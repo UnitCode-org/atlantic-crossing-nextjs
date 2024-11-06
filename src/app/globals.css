@@ -40,3 +40,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+body {
+  font-family: var(--font-poppins);
+}
+
+.font-inter {
+  font-family: var(--font-inter);
+}
+
+.font-poppins {
+  font-family: var(--font-poppins);
+}
