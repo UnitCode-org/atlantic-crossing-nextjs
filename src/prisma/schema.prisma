@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Intent {
+  id         Int      @id @default(autoincrement())
+  explorerId Int      @map("explorer_id")
+  personId   Int      @map("person_id")
+  intent     Int      @map("intent")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+}
+
+model Person {
+  id            Int      @id @default(autoincrement())
+  name          String    @map("name")
+  earthoneLink  String    @map("earthone_link")
+  organisation  String    @map("organisation")
+  title         String    @map("title")
+  location      String    @map("location")
+  website       String    @map("website")
+  instagramLink String    @map("instagram_link")
+  linkedinLink  String    @map("linkedin_link")
+  nationality   String    @map("nationality")
+  bio           String    @map("bio")
+  offer         String    @map("offer")
+  need          String    @map("need")
+  action        String    @map("action")
+  guild         String    @map("guild")
+  earthoneRole  String    @map("earthone_role")
+  points        Int       @map("points")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+}
