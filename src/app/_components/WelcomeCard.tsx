@@ -1,47 +1,55 @@
 'use client';
 
-import Card from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import Card from '@/components/ui/card';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import { Person } from '@prisma/client';
-import { Check, ChevronsUpDown } from 'lucide-react';
+import { ArrowRightLeft, Check, ChevronDown } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 function WelcomeCard({ persons }: { persons: Person[] }) {
-    const [open, setOpen] = useState(false);
-    const [value, setValue] = useState('');
-    
+  const router = useRouter();
+
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(persons[0].id.toString());
+
   return (
-    <Card>
-      <h1>Atlantic Crossing</h1>
+    <Card className='text-center w-[28rem]'>
+      <h1 className='text-primary text-2xl font-semibold pt-4 pb-16'>Atlantic Crossing</h1>
       <div className='flex flex-col gap-4'>
-        <h3>What is your name?</h3>
-        <Popover>
+        <h3 className='font-semibold text-[32px] pb-2'>What is your name?</h3>
+        <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
-            <Button variant='outline' role='combobox' aria-expanded={open} className='w-[200px] justify-between'>
-              {value ? persons.find((person) => person.name === value)?.name : 'Select name...'}
-              <ChevronsUpDown className='opacity-50' />
+            <Button
+              variant='outline'
+              role='combobox'
+              aria-expanded={open}
+              className='justify-between border-none bg-[#F6F7FE] py-7 px-5'
+            >
+              {value ? persons.find((person) => person.id === parseInt(value))?.name : 'Select name...'}
+              <ChevronDown />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className='w-[200px] p-0'>
+          <PopoverContent className='w-[320px] p-0' align='start'>
             <Command>
-              <CommandInput placeholder='Search framework...' />
+              <CommandInput placeholder='Search name...' />
               <CommandList>
-                <CommandEmpty>No framework found.</CommandEmpty>
+                <CommandEmpty>No data found.</CommandEmpty>
                 <CommandGroup>
                   {persons.map((person) => (
                     <CommandItem
                       key={person.id}
-                      value={person.name}
+                      value={person.id.toString()}
                       onSelect={(currentValue) => {
-                        setValue(currentValue === value ? '' : currentValue);
+                        setValue(currentValue);
                         setOpen(false);
                       }}
                     >
                       {person.name}
-                      <Check className={cn('ml-auto', value === person.name ? 'opacity-100' : 'opacity-0')} />
+                      <Check className={cn('ml-auto', value === person.id.toString() ? 'opacity-100' : 'opacity-0')} />
                     </CommandItem>
                   ))}
                 </CommandGroup>
@@ -49,7 +57,13 @@ function WelcomeCard({ persons }: { persons: Person[] }) {
             </Command>
           </PopoverContent>
         </Popover>
-        <Button>Continue</Button>
+        <Button className='py-6 font-semibold' onClick={() => router.push(`/meet/${value}`)}>
+          Get Started
+        </Button>
+        <p className='flex items-center gap-3 text-base justify-center pb-16'>
+          <ArrowRightLeft size={18} className='text-primary' />
+          288 Meets and Interactions
+        </p>
       </div>
     </Card>
   );

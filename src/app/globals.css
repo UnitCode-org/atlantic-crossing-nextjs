@@ -52,3 +52,11 @@ body {
 .font-poppins {
   font-family: var(--font-poppins);
 }
+
+.welcome-background {
+  background-image: url('/img/welcome-background.png');
+  background-size: cover;
+  background-position: 100% 0;
+  background-size: 64rem;
+  background-repeat: no-repeat;
+}
