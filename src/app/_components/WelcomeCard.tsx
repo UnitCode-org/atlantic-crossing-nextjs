@@ -6,7 +6,7 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import { Person } from '@prisma/client';
-import { ArrowRightLeft, Check, ChevronDown } from 'lucide-react';
+import { ArrowDown2, ArrowSwapHorizontal, TickCircle } from 'iconsax-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -30,7 +30,7 @@ function WelcomeCard({ persons }: { persons: Person[] }) {
               className='justify-between border-none bg-[#F6F7FE] py-7 px-5'
             >
               {value ? persons.find((person) => person.id === parseInt(value))?.name : 'Select name...'}
-              <ChevronDown />
+              <ArrowDown2 color='#2C2C2E' size={24} />
             </Button>
           </PopoverTrigger>
           <PopoverContent className='w-[320px] p-0' align='start'>
@@ -49,7 +49,9 @@ function WelcomeCard({ persons }: { persons: Person[] }) {
                       }}
                     >
                       {person.name}
-                      <Check className={cn('ml-auto', value === person.id.toString() ? 'opacity-100' : 'opacity-0')} />
+                      <TickCircle
+                        className={cn('ml-auto', value === person.id.toString() ? 'opacity-100' : 'opacity-0')}
+                      />
                     </CommandItem>
                   ))}
                 </CommandGroup>
@@ -61,7 +63,7 @@ function WelcomeCard({ persons }: { persons: Person[] }) {
           Get Started
         </Button>
         <p className='flex items-center gap-3 text-base justify-center pb-16'>
-          <ArrowRightLeft size={18} className='text-primary' />
+          <ArrowSwapHorizontal size={18} color='#6A45FF' />
           288 Meets and Interactions
         </p>
       </div>
