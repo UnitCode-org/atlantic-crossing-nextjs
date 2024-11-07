@@ -10,11 +10,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Intent {
+model Meet {
   id         Int      @id @default(autoincrement())
   explorerId Int      @map("explorer_id")
   personId   Int      @map("person_id")
-  intent     Int      @map("intent")
+  person     Person   @relation(fields: [personId], references: [id])
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @updatedAt @map("updated_at")
 }
@@ -37,6 +37,7 @@ model Person {
   guild         String    @map("guild")
   earthoneRole  String    @map("earthone_role")
   points        Int       @map("points")
+  meets         Meet[]
   createdAt     DateTime @default(now()) @map("created_at")
   updatedAt     DateTime @updatedAt @map("updated_at")
 }

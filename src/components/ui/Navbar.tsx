@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
-function Navbar() {
+function Navbar({ personId }: { personId: number | undefined }) {
   const pathname = usePathname();
 
   return (
@@ -20,7 +20,7 @@ function Navbar() {
             : 'bg-transparent text-[#8E8E93] hover:bg-[#F3EFFD] hover:text-primary/80'
         )}
       >
-        <Link href='/meet'>Meet</Link>
+        <Link href={personId ? `/meet/${personId}` : '/meet'}>Meet</Link>
       </Button>
       <Button
         asChild
@@ -31,7 +31,7 @@ function Navbar() {
             : 'bg-transparent text-[#8E8E93] hover:bg-[#F3EFFD] hover:text-primary/80'
         )}
       >
-        <Link href='/leaderboard'>Leaderboard</Link>
+        <Link href={personId ? `/leaderboard/${personId}` : '/leaderboard'}>Leaderboard</Link>
       </Button>
       <Button
         asChild
@@ -42,7 +42,7 @@ function Navbar() {
             : 'bg-transparent text-[#8E8E93] hover:bg-[#F3EFFD] hover:text-primary/80'
         )}
       >
-        <Link href='/matches'>Matches</Link>
+        <Link href={personId ? `/matches/${personId}` : '/matches'}>Matches</Link>
       </Button>
     </nav>
   );
