@@ -10,11 +10,11 @@ function Navbar({ personId }: { personId: number | undefined }) {
   const pathname = usePathname();
 
   return (
-    <nav className='py-8 flex items-center gap-4'>
+    <nav className='py-6 md:py-8 flex items-center gap-1 px-20'>
       <Button
         asChild
         className={cn(
-          'text-base font-semibold py-5 min-w-24',
+          'text-[14px] md:text-base font-semibold py-5 min-w-[5rem] md:min-w-24',
           pathname.includes('/meet')
             ? 'bg-[#F3EFFD] text-primary hover:bg-[#F3EFFD] hover:text-primary'
             : 'bg-transparent text-[#8E8E93] hover:bg-[#F3EFFD] hover:text-primary/80'
@@ -25,7 +25,7 @@ function Navbar({ personId }: { personId: number | undefined }) {
       <Button
         asChild
         className={cn(
-          'text-base font-semibold py-5 min-w-24',
+          'text-[14px] md:text-base font-semibold py-5 min-w-[5rem] md:min-w-24',
           pathname.includes('/leaderboard')
             ? 'bg-[#F3EFFD] text-primary hover:bg-[#F3EFFD] hover:text-primary'
             : 'bg-transparent text-[#8E8E93] hover:bg-[#F3EFFD] hover:text-primary/80'
@@ -36,7 +36,7 @@ function Navbar({ personId }: { personId: number | undefined }) {
       <Button
         asChild
         className={cn(
-          'text-base font-semibold py-5 min-w-24',
+          'text-[14px] md:text-base font-semibold py-5 min-w-[5rem] md:min-w-24',
           pathname.includes('/matches')
             ? 'bg-[#F3EFFD] text-primary hover:bg-[#F3EFFD] hover:text-primary'
             : 'bg-transparent text-[#8E8E93] hover:bg-[#F3EFFD] hover:text-primary/80'

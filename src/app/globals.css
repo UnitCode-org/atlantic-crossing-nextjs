@@ -57,6 +57,12 @@ body {
   background-image: url('/img/welcome-background.png');
   background-size: cover;
   background-position: 100% 0;
-  background-size: 64rem;
+  background-size: 32rem;
   background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+  .welcome-background {
+    background-size: 64rem;
+  }
 }

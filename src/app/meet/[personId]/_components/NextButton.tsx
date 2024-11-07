@@ -16,7 +16,7 @@ function NextButton() {
     <div className='text-center group cursor-pointer' onClick={handleNext}>
       <Button
         size='icon'
-        className='rounded-full p-8 bg-transparent border-2 border-primary group-hover:bg-transparent group-hover:border-primary/80'
+        className='rounded-full p-7 md:p-8 bg-transparent border-2 border-primary group-hover:bg-transparent group-hover:border-primary/80'
       >
         <Next color='#6A45FF' variant='Bold' size={32} className='group-hover:opacity-80 transition' />
       </Button>

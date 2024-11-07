@@ -18,16 +18,16 @@ function WelcomeCard({ persons }: { persons: Person[] }) {
 
   return (
     <Card className='text-center w-[28rem]'>
-      <h1 className='text-primary text-2xl font-semibold pt-4 pb-16'>Atlantic Crossing</h1>
+      <h1 className='text-primary text-base md:text-2xl font-semibold pt-4 pb-16'>Atlantic Crossing</h1>
       <div className='flex flex-col gap-4'>
-        <h3 className='font-semibold text-[32px] pb-2'>What is your name?</h3>
+        <h3 className='font-semibold text-[20px] md:text-[32px] pb-2'>What is your name?</h3>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button
               variant='outline'
               role='combobox'
               aria-expanded={open}
-              className='justify-between border-none bg-[#F6F7FE] py-7 px-5'
+              className='justify-between border-none text-sm md:text-base font-normal bg-[#F6F7FE] py-7 px-5'
             >
               {value ? persons.find((person) => person.id === parseInt(value))?.name : 'Select name...'}
               <ArrowDown2 color='#2C2C2E' size={24} />
@@ -59,10 +59,13 @@ function WelcomeCard({ persons }: { persons: Person[] }) {
             </Command>
           </PopoverContent>
         </Popover>
-        <Button className='py-6 font-semibold' onClick={() => router.push(`/meet/${value}`)}>
+        <Button
+          className='py-6 text-sm md:text-base font-semibold rounded-lg my-2'
+          onClick={() => router.push(`/meet/${value}`)}
+        >
           Get Started
         </Button>
-        <p className='flex items-center gap-3 text-base justify-center pb-16'>
+        <p className='flex items-center gap-3 text-sm md:text-base justify-center pb-16'>
           <ArrowSwapHorizontal size={18} color='#6A45FF' />
           288 Meets and Interactions
         </p>
