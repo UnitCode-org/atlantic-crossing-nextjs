@@ -5,7 +5,7 @@ export default async function Home() {
   const persons = await getAllPersons();
 
   return (
-    <div className='flex justify-center items-center h-screen welcome-background'>
+    <div className='flex justify-center items-center h-screen welcome-background px-6'>
       <WelcomeCard persons={persons} />
     </div>
   );
