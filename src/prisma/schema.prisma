@@ -14,7 +14,8 @@ model Meet {
   id         Int      @id @default(autoincrement())
   explorerId Int      @map("explorer_id")
   personId   Int      @map("person_id")
-  person     Person   @relation(fields: [personId], references: [id])
+  person     Person   @relation("PersonMeets", fields: [personId], references: [id])
+  explorer   Person   @relation("ExplorerMeets", fields: [explorerId], references: [id])
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @updatedAt @map("updated_at")
 }
@@ -37,7 +38,8 @@ model Person {
   guild         String    @map("guild")
   earthoneRole  String    @map("earthone_role")
   points        Int       @map("points")
-  meets         Meet[]
+  meets         Meet[]    @relation("PersonMeets")
+  explorerMeets Meet[]    @relation("ExplorerMeets")
   createdAt     DateTime @default(now()) @map("created_at")
   updatedAt     DateTime @updatedAt @map("updated_at")
 }

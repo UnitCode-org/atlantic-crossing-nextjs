@@ -1,12 +1,12 @@
-import { Button } from '@/components/ui/button';
 import Card from '@/components/ui/card';
 import Navbar from '@/components/ui/Navbar';
 import { Separator } from '@/components/ui/separator';
 import { getPersonById } from '@/services/person';
-import { Briefcase, Link as LinkIcon, Location, Next, Profile2User } from 'iconsax-react';
-import { redirect } from 'next/navigation';
-import React from 'react';
+import { Briefcase, Link as LinkIcon, Location } from 'iconsax-react';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import MeetButton from './_components/MeetButton';
+import NextButton from './_components/NextButton';
 
 async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
   const personId = parseInt((await params).personId);
@@ -19,7 +19,7 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
   do {
     randomInt = Math.floor(Math.random() * 300) + 1;
   } while (randomInt === personId);
-  
+
   const meetPerson = await getPersonById(randomInt);
   if (!meetPerson) {
     return redirect('/');
@@ -108,21 +108,8 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
         <div className='flex-grow w-20'></div>
       </div>
       <div className='flex items-center gap-7 pb-4 pt-6'>
-        <div className='text-center group cursor-pointer'>
-          <Button
-            size='icon'
-            className='rounded-full p-8 bg-transparent border-2 border-primary group-hover:bg-transparent group-hover:border-primary/80'
-          >
-            <Next color='#6A45FF' variant='Bold' size={32} className='group-hover:opacity-80 transition' />
-          </Button>
-          <p className='text-primary font-semibold group-hover:text-primary/80 transition'>Next</p>
-        </div>
-        <div className='text-center group cursor-pointer'>
-          <Button size='icon' className='rounded-full p-[2.12rem] bg-primary group-hover:bg-primary/80'>
-            <Profile2User color='#FFFFFF' variant='Bold' size={32} />
-          </Button>
-          <p className='text-primary font-semibold group-hover:text-primary/80 transition'>Meet</p>
-        </div>
+        <NextButton />
+        <MeetButton personId={currentPerson.id} meetPersonId={meetPerson.id} />
       </div>
     </div>
   );

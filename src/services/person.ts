@@ -1,6 +1,7 @@
 'use server';
 
 import prisma from '@/lib/db';
+import { Person } from '@prisma/client';
 
 export async function getAllPersons() {
   const persons = await prisma.person.findMany();
@@ -14,3 +15,47 @@ export async function getPersonById(id: number) {
   return person;
 }
 
+export async function getNonMutuals(personId: number) {
+  const persons = await prisma.person.findMany({
+    where: {
+      meets: {
+        some: {
+          explorerId: personId,
+        },
+      },
+    },
+  });
+  return persons;
+}
+
+
+export async function getMutuals(personId: number) {
+  const persons = await prisma.person.findMany({
+    where: {
+      meets: {
+        some: {
+          explorerId: personId,
+        },
+      },
+    },
+  });
+
+  const mutuals: Person[] = [];
+  for (const person of persons) {
+    const theirPersons = await prisma.person.findMany({
+      where: {
+        meets: {
+          some: {
+            explorerId: person.id,
+          },
+        },
+      },
+    });
+
+    if (theirPersons.some((theirPerson) => theirPerson.id === personId)) {
+      mutuals.push(person);
+    }
+  }
+
+  return mutuals;
+}
