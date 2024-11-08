@@ -47,6 +47,7 @@ function WelcomeCard({ persons }: { persons: Person[] }) {
                         setValue(currentValue);
                         setOpen(false);
                       }}
+                      keywords={[person.name]}
                     >
                       {person.name}
                       <TickCircle

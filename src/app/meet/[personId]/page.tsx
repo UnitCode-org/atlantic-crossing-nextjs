@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import MeetButton from './_components/MeetButton';
 import NextButton from './_components/NextButton';
+import { fixHref } from '@/lib/utils';
 
 async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
   const personId = parseInt((await params).personId);
@@ -74,7 +75,7 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
                 <div className='flex flex-col gap-1 w-full overflow-hidden'>
                   {meetPerson.website !== '' && (
                     <Link
-                      href={meetPerson.website}
+                      href={fixHref(meetPerson.website)}
                       target='_blank'
                       className='text-xs font-inter hover:text-primary/80 transition truncate'
                     >
@@ -83,7 +84,7 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
                   )}
                   {meetPerson.instagramLink !== '' && (
                     <Link
-                      href={meetPerson.instagramLink}
+                      href={fixHref(meetPerson.instagramLink)}
                       target='_blank'
                       className='text-xs font-inter hover:text-primary/80 transition truncate'
                     >
@@ -92,7 +93,7 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
                   )}
                   {meetPerson.linkedinLink !== '' && (
                     <Link
-                      href={meetPerson.linkedinLink}
+                      href={fixHref(meetPerson.linkedinLink)}
                       target='_blank'
                       className='text-xs font-inter hover:text-primary/80 transition truncate'
                     >
@@ -101,7 +102,7 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
                   )}
                   {meetPerson.earthoneLink !== '' && (
                     <Link
-                      href={meetPerson.earthoneLink}
+                      href={fixHref(meetPerson.earthoneLink)}
                       target='_blank'
                       className='text-xs font-inter hover:text-primary/80 transition truncate'
                     >
