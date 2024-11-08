@@ -5,11 +5,11 @@ import { Next } from 'iconsax-react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-function NextButton() {
+function NextButton({ personId }: { personId: number }) {
   const router = useRouter();
 
   function handleNext() {
-    router.refresh();
+    router.replace('/meet/' + personId);
   }
 
   return (

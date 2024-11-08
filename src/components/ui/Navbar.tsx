@@ -44,6 +44,28 @@ function Navbar({ personId }: { personId: number | undefined }) {
       >
         <Link href={personId ? `/matches/${personId}` : '/matches'}>Matches</Link>
       </Button>
+      <Button
+        asChild
+        className={cn(
+          'text-[14px] md:text-base font-semibold py-5 min-w-[5rem] md:min-w-24',
+          pathname.includes('/insta')
+            ? 'bg-[#F3EFFD] text-primary hover:bg-[#F3EFFD] hover:text-primary'
+            : 'bg-transparent text-[#8E8E93] hover:bg-[#F3EFFD] hover:text-primary/80'
+        )}
+      >
+        <Link href={personId ? `/insta/${personId}` : '/insta'}>Insta</Link>
+      </Button>
+      <Button
+        asChild
+        className={cn(
+          'text-[14px] md:text-base font-semibold py-5 min-w-[5rem] md:min-w-24',
+          pathname.includes('/profile')
+            ? 'bg-[#F3EFFD] text-primary hover:bg-[#F3EFFD] hover:text-primary'
+            : 'bg-transparent text-[#8E8E93] hover:bg-[#F3EFFD] hover:text-primary/80'
+        )}
+      >
+        <Link href={personId ? `/profile/${personId}` : '/profile'}>Profile</Link>
+      </Button>
     </nav>
   );
 }
