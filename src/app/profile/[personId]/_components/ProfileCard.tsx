@@ -16,7 +16,7 @@ function ProfileCard({ persons, currentPersonId }: { persons: Person[]; currentP
   const [value, setValue] = useState('');
 
   return (
-    <Card className='w-[48rem] overflow-y-auto h-full mx-6 p-6 md:p-8 flex flex-col justify-center items-center'>
+    <Card className='w-[48rem] overflow-y-auto h-full mx-6 xl:mx-0 p-6 md:p-8 flex flex-col justify-center items-center'>
       <h1 className='text-[20px] md:text-[32px] font-semibold pb-5 md:pb-6'>Which Profile?</h1>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
