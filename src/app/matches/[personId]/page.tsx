@@ -24,8 +24,8 @@ async function MatchesPage({ params }: { params: Promise<{ personId: string }> }
         <p className='text-[16px] font-semibold w-fit pt-1'>
           Welcome, <span className='text-primary'>{currentPerson.name}</span>
         </p>
-        <Link className='text-xs font-normal text-primary' href={`/`}>
-          (that&apos;s not me)
+        <Link className='text-xs font-semibold text-primary underline' href={`/`}>
+          That&apos;s not me
         </Link>
       </div>
       <Navbar personId={personId} />
@@ -36,8 +36,8 @@ async function MatchesPage({ params }: { params: Promise<{ personId: string }> }
             <p className='text-[20px] font-semibold w-fit'>
               Welcome, <span className='text-primary'>{currentPerson.name}</span>
             </p>
-            <Link className='text-sm font-normal text-primary' href={`/`}>
-              (that&apos;s not me)
+            <Link className='text-sm font-semibold text-primary underline' href={`/`}>
+              That&apos;s not me
             </Link>
           </div>
         </div>

@@ -33,7 +33,7 @@ function WelcomeCard({ persons }: { persons: Person[] }) {
               <ArrowDown2 color='#2C2C2E' size={24} />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className='w-[320px] p-0' align='start'>
+          <PopoverContent className='w-[260px] md:w-[320px] p-0' align='start'>
             <Command>
               <CommandInput placeholder='Search name...' />
               <CommandList>
