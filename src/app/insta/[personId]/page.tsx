@@ -15,13 +15,7 @@ async function InstaPage({
 
   const persons = await getAllPersons();
 
-  return (
-    <Insta
-      personId={personId}
-      persons={persons}
-      currentPerson={currentPerson}
-    />
-  );
+  return <Insta persons={persons} currentPerson={currentPerson} />;
 }
 
 export default InstaPage;

@@ -10,12 +10,11 @@ import { useState } from "react";
 import { SearchNormal1 } from "iconsax-react";
 
 type InstaProps = {
-  personId: number;
   persons: Person[];
   currentPerson: Person;
 };
 
-function Insta({ personId, persons, currentPerson }: InstaProps) {
+function Insta({ persons, currentPerson }: InstaProps) {
   const [search, setSearch] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,16 +27,27 @@ function Insta({ personId, persons, currentPerson }: InstaProps) {
 
   return (
     <div className="flex flex-col justify-between items-center h-screen overflow-x-hidden xl:overflow-y-hidden">
-      <div className="flex justify-center items-center text-center flex-col xl:hidden pt-8 px-16">
+      <div className="flex justify-end w-full md:hidden">
+        <Navbar personId={currentPerson.id} />
+      </div>
+
+      <div className="flex justify-center items-center text-center flex-col xl:hidden pt-0 md:pt-8 pb-8 md:pb-0 px-16">
         <h2 className="text-[28px] font-semibold w-fit">Atlantic Crossing</h2>
         <p className="text-[16px] font-semibold w-fit pt-1">
           Welcome, <span className="text-primary">{currentPerson.name}</span>
         </p>
-        <Link className="text-xs font-normal text-primary" href={`/`}>
-          (that&apos;s not me)
+        <Link
+          className="text-xs font-semibold text-primary underline"
+          href={`/`}
+        >
+          That&apos;s not me
         </Link>
       </div>
-      <Navbar personId={personId} />
+
+      <div className="hidden md:block">
+        <Navbar personId={currentPerson.id} />
+      </div>
+
       <div className="flex items-center justify-center w-full h-full pb-12 xl:pb-40 px-6 xl:px-0">
         <div className="flex-grow w-20 p-12 pb-12 xl:pb-[7.5rem] hidden xl:flex flex-col items-center">
           <div className="w-fit">
