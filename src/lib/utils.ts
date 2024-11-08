@@ -15,3 +15,12 @@ export function getInitials(name: string): string {
   
   return (words[0][0] + words[words.length - 1][0]).toUpperCase();
 }
+
+export function fixHref(link: string): string {
+  // Check if the link starts with "www." but does not already have "http://" or "https://"
+  if (/^www\./.test(link) && !/^(https?:\/\/)/.test(link)) {
+    return `https://${link}`;
+  }
+  // Return the link unmodified if it's already absolute
+  return link;
+}
