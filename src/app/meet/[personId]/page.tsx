@@ -17,7 +17,7 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
 
   let randomInt;
   do {
-    randomInt = Math.floor(Math.random() * 300) + 1;
+    randomInt = Math.floor(Math.random() * 321) + 1;
   } while (randomInt === personId);
 
   const meetPerson = await getPersonById(randomInt);

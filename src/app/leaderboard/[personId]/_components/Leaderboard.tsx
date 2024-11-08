@@ -63,7 +63,7 @@ function Leaderboard({ persons, currentPerson }: LeaderboardProps) {
           </div>
         </div>
 
-        <div className="w-[48rem] mx-4 xl:mx-0 overflow-y-auto h-full hide-scrollbar">
+        <div className="w-[48rem] mx-6 xl:mx-0 overflow-y-auto h-full hide-scrollbar">
           <Alert />
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-x-6 gap-y-4 pt-0 xl:pt-8 pb-8">
             {top3.map((person, index) => (
