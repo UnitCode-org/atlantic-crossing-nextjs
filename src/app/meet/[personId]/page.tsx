@@ -20,7 +20,7 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
     randomInt = Math.floor(Math.random() * 321) + 1;
   } while (randomInt === personId);
 
-  const meetPerson = await getPersonById(randomInt);
+  const meetPerson = await getPersonById(117);
   if (!meetPerson) {
     return redirect('/');
   }
@@ -51,8 +51,8 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
         </div>
         <Card className='w-[48rem] overflow-y-auto h-full mx-6 p-6 md:p-8'>
           <h1 className='text-[20px] md:text-[32px] font-semibold pb-5 md:pb-6'>{meetPerson.name}</h1>
-          <div className='grid md:grid-cols-2 gap-4'>
-            <div className='bg-[#F6F7FE] rounded-lg p-4 h-fit flex flex-col gap-2'>
+          <div className='grid md:grid-cols-2 gap-4 overflow-hidden'>
+            <div className='bg-[#F6F7FE] rounded-lg p-4 h-fit flex flex-col gap-2 overflow-hidden'>
               <h2 className='text-base font-semibold'>Profile</h2>
               {meetPerson.organisation !== '' && meetPerson.title !== '' && (
                 <div className='flex gap-2'>
@@ -71,12 +71,12 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
               )}
               <div className='flex gap-2'>
                 <LinkIcon size='16' variant='Bold' color='#8E8E93' className='shrink-0' />
-                <div className='flex flex-col gap-1'>
+                <div className='flex flex-col gap-1 w-full overflow-hidden'>
                   {meetPerson.website !== '' && (
                     <Link
                       href={meetPerson.website}
                       target='_blank'
-                      className='text-xs font-inter hover:text-primary/80 transition text-ellipsis'
+                      className='text-xs font-inter hover:text-primary/80 transition truncate'
                     >
                       {meetPerson.website}
                     </Link>
@@ -85,7 +85,7 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
                     <Link
                       href={meetPerson.instagramLink}
                       target='_blank'
-                      className='text-xs font-inter hover:text-primary/80 transition text-ellipsis'
+                      className='text-xs font-inter hover:text-primary/80 transition truncate'
                     >
                       {meetPerson.instagramLink}
                     </Link>
@@ -94,7 +94,7 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
                     <Link
                       href={meetPerson.linkedinLink}
                       target='_blank'
-                      className='text-xs font-inter hover:text-primary/80 transition text-ellipsis'
+                      className='text-xs font-inter hover:text-primary/80 transition truncate'
                     >
                       {meetPerson.linkedinLink}
                     </Link>
@@ -103,7 +103,7 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
                     <Link
                       href={meetPerson.earthoneLink}
                       target='_blank'
-                      className='text-xs font-inter hover:text-primary/80 transition text-ellipsis'
+                      className='text-xs font-inter hover:text-primary/80 transition truncate'
                     >
                       {meetPerson.earthoneLink}
                     </Link>

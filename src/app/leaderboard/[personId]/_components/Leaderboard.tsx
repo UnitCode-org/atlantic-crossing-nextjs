@@ -8,6 +8,7 @@ import Top3Card from "./Top3Card";
 import usePagination from "@/hooks/usePagination";
 import { Person } from "@/types/person";
 import Pagination from "@/components/ui/pagination";
+import { getInitials } from '@/lib/utils';
 
 type LeaderboardProps = {
   persons: Person[];
@@ -98,7 +99,7 @@ function Leaderboard({ persons, currentPerson }: LeaderboardProps) {
                     </div>
                     <div className="mr-auto flex items-center">
                       <div className="inline-block min-w-[32px] min-h-[32px] w-[32px] h-[32px] rounded-full text-center leading-[32px] text-[13px] font-bold text-white mr-[6px] md:min-w-[42px] md:min-h-[42px] md:w-[42px] md:h-[42px] md:leading-[42px] md:text-[15px] md:mr-[10px] bg-primary">
-                        {person.name.slice(0, 2)}
+                        {getInitials(person.name)}
                       </div>
                       <span className="follow-username-width text-unit-gray-30 font-medium">
                         {person.name}

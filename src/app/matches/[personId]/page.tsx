@@ -60,7 +60,7 @@ async function MatchesPage({ params }: { params: Promise<{ personId: string }> }
                     className='w-14 md:w-16 flex flex-col justify-center items-center last:mr-6 md:last:mr-8'
                     href={person.earthoneLink}
                   >
-                    <Avatar />
+                    <Avatar name={person.name} />
                     <p className='text-xs md:text-sm text-center w-full pt-2'>{person.name}</p>
                   </Link>
                 ))}
@@ -84,8 +84,8 @@ async function MatchesPage({ params }: { params: Promise<{ personId: string }> }
                     className='w-full flex justify-between items-center last:pb-6 md:last:pb-8 gap-4'
                   >
                     <div className='flex items-center gap-2 md:gap-4'>
-                      <Avatar />
-                      <p className='text-xs md:text-sm text-center w-full'>{person.name}</p>
+                      <Avatar name={person.name} />
+                      <p className='text-xs md:text-sm w-full text-left'>{person.name}</p>
                     </div>
                     <Button asChild className='text-sm py-5 px-7 md:text-base md:py-6 md:w-28 font-semibold'>
                       <Link target='_blank' href={person.earthoneLink}>
