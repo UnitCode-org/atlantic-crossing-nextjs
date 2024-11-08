@@ -32,12 +32,15 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
         <Navbar personId={currentPerson.id} />
       </div>
 
-      <div className="flex justify-center items-center text-center flex-col xl:hidden pb-8 px-16">
+      <div className="flex justify-center items-center text-center flex-col xl:hidden pt-0 md:pt-8 pb-8 md:pb-0 px-16">
         <h2 className="text-[28px] font-semibold w-fit">Atlantic Crossing</h2>
         <p className="text-[16px] font-semibold w-fit pt-1">
           Welcome, <span className="text-primary">{currentPerson.name}</span>
         </p>
-        <Link className='text-xs font-semibold text-primary underline' href={`/`}>
+        <Link
+          className="text-xs font-semibold text-primary underline"
+          href={`/`}
+        >
           That&apos;s not me
         </Link>
       </div>
@@ -56,7 +59,10 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
               Welcome,{" "}
               <span className="text-primary">{currentPerson.name}</span>
             </p>
-            <Link className='text-sm font-semibold text-primary underline' href={`/`}>
+            <Link
+              className="text-sm font-semibold text-primary underline"
+              href={`/`}
+            >
               That&apos;s not me
             </Link>
           </div>
@@ -197,7 +203,7 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
         </Card>
         <div className="flex-grow w-20 hidden xl:block"></div>
       </div>
-      <div className='flex items-center gap-7 pb-4 pt-6'>
+      <div className="flex items-center gap-7 pb-4 pt-6">
         <NextButton personId={currentPerson.id} />
         <MeetButton personId={currentPerson.id} meetPersonId={meetPerson.id} />
       </div>
