@@ -3,8 +3,14 @@
 import prisma from '@/lib/db';
 import { Person } from '@prisma/client';
 
-export async function getAllPersons() {
-  const persons = await prisma.person.findMany();
+export async function getAllPersons(sortByPoints: boolean = false) {
+  const persons = sortByPoints
+    ? await prisma.person.findMany({
+        orderBy: {
+          points: 'desc',
+        },
+      })
+    : await prisma.person.findMany();
   return persons;
 }
 
@@ -27,7 +33,6 @@ export async function getNonMutuals(personId: number) {
   });
   return persons;
 }
-
 
 export async function getMutuals(personId: number) {
   const persons = await prisma.person.findMany({
