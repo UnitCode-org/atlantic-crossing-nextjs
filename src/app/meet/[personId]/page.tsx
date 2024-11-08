@@ -20,7 +20,7 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
     randomInt = Math.floor(Math.random() * 321) + 1;
   } while (randomInt === personId);
 
-  const meetPerson = await getPersonById(117);
+  const meetPerson = await getPersonById(randomInt);
   if (!meetPerson) {
     return redirect('/');
   }
