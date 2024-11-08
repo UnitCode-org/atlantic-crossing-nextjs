@@ -8,7 +8,7 @@ import Top3Card from "./Top3Card";
 import usePagination from "@/hooks/usePagination";
 import { Person } from "@/types/person";
 import Pagination from "@/components/ui/pagination";
-import { getInitials } from '@/lib/utils';
+import { getInitials } from "@/lib/utils";
 
 type LeaderboardProps = {
   persons: Person[];
@@ -38,16 +38,27 @@ function Leaderboard({ persons, currentPerson }: LeaderboardProps) {
 
   return (
     <div className="flex flex-col justify-between items-center h-screen overflow-x-hidden">
-      <div className="flex justify-center items-center text-center flex-col xl:hidden pt-8 px-16">
+      <div className="flex justify-end w-full md:hidden">
+        <Navbar personId={currentPerson.id} />
+      </div>
+
+      <div className="flex justify-center items-center text-center flex-col xl:hidden pt-0 md:pt-8 pb-8 md:pb-0 px-16">
         <h2 className="text-[28px] font-semibold w-fit">Atlantic Crossing</h2>
         <p className="text-[16px] font-semibold w-fit pt-1">
-          Welcome, <span className="text-primary">{currentPerson?.name}</span>
+          Welcome, <span className="text-primary">{currentPerson.name}</span>
         </p>
-        <Link className="text-xs font-normal text-primary" href={`/`}>
-          (that&apos;s not me)
+        <Link
+          className="text-xs font-semibold text-primary underline"
+          href={`/`}
+        >
+          That&apos;s not me
         </Link>
       </div>
-      <Navbar personId={currentPerson?.id} />
+
+      <div className="hidden md:block">
+        <Navbar personId={currentPerson.id} />
+      </div>
+
       <div className="overflow-y-auto flex items-center justify-center w-full h-full">
         <div className="flex-grow w-20 p-12 hidden xl:flex flex-col items-center -mt-[128px]">
           <div className="w-fit">
@@ -58,8 +69,11 @@ function Leaderboard({ persons, currentPerson }: LeaderboardProps) {
               Welcome,{" "}
               <span className="text-primary">{currentPerson?.name}</span>
             </p>
-            <Link className="text-sm font-normal text-primary" href={`/`}>
-              (that&apos;s not me)
+            <Link
+              className="text-sm font-semibold text-primary underline"
+              href={`/`}
+            >
+              That&apos;s not me
             </Link>
           </div>
         </div>

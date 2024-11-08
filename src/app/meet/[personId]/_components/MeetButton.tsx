@@ -11,7 +11,11 @@ function MeetButton({ personId, meetPersonId }: { personId: number; meetPersonId
 
   async function handleMeet() {
     await meetPerson(personId, meetPersonId);
-    router.refresh();
+    router.replace('/meet/' + personId);
+  }
+
+  if (personId === meetPersonId) {
+    return null;
   }
 
   return (

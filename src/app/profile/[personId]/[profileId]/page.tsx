@@ -1,3 +1,5 @@
+import MeetButton from "@/app/meet/[personId]/_components/MeetButton";
+import NextButton from "@/app/meet/[personId]/_components/NextButton";
 import Card from "@/components/ui/card";
 import Navbar from "@/components/ui/Navbar";
 import { Separator } from "@/components/ui/separator";
@@ -5,25 +7,22 @@ import { getPersonById } from "@/services/person";
 import { Briefcase, Link as LinkIcon, Location } from "iconsax-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import MeetButton from "./_components/MeetButton";
-import NextButton from "./_components/NextButton";
-import { fixHref } from "@/lib/utils";
 
-async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
+async function ProfilePage({
+  params,
+}: {
+  params: Promise<{ personId: string; profileId: string }>;
+}) {
   const personId = parseInt((await params).personId);
+  const profileId = parseInt((await params).profileId);
   const currentPerson = await getPersonById(personId);
   if (!currentPerson) {
     return redirect("/");
   }
 
-  let randomInt;
-  do {
-    randomInt = Math.floor(Math.random() * 321) + 1;
-  } while (randomInt === personId);
-
-  const meetPerson = await getPersonById(randomInt);
-  if (!meetPerson) {
-    return redirect("/");
+  const profilePerson = await getPersonById(profileId);
+  if (!profilePerson) {
+    return redirect("/profile/" + personId);
   }
 
   return (
@@ -59,109 +58,111 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
           </div>
         </div>
         <Card className='w-[48rem] overflow-y-auto h-full mx-6 xl:mx-0 p-6 md:p-8'>
-          <h1 className='text-[20px] md:text-[32px] font-semibold pb-5 md:pb-6'>{meetPerson.name}</h1>
+          <h1 className='text-[20px] md:text-[32px] font-semibold pb-5 md:pb-6'>{profilePerson.name}</h1>
           <div className='grid md:grid-cols-2 gap-4 overflow-hidden'>
             <div className='bg-[#F6F7FE] rounded-lg p-4 h-fit flex flex-col gap-2 overflow-hidden'>
               <h2 className='text-base font-semibold'>Profile</h2>
-              {meetPerson.organisation !== '' && meetPerson.title !== '' && (
+              {profilePerson.organisation !== '' && profilePerson.title !== '' && (
                 <div className='flex gap-2'>
                   <Briefcase size='16' variant='Bold' color='#8E8E93' className='shrink-0' />
                   <div className='flex-col gap-1'>
-                    {meetPerson.organisation !== '' && <p className='text-xs font-inter'>{meetPerson.organisation}</p>}
-                    {meetPerson.title !== '' && <p className='text-xs font-inter'>{meetPerson.title}</p>}
+                    {profilePerson.organisation !== '' && (
+                      <p className='text-xs font-inter'>{profilePerson.organisation}</p>
+                    )}
+                    {profilePerson.title !== '' && <p className='text-xs font-inter'>{profilePerson.title}</p>}
                   </div>
                 </div>
               )}
-              {meetPerson.location !== '' && (
+              {profilePerson.location !== '' && (
                 <div className='flex gap-2'>
                   <Location size='16' variant='Bold' color='#8E8E93' className='shrink-0' />
-                  <p className='text-xs font-inter'>{meetPerson.location}</p>
+                  <p className='text-xs font-inter'>{profilePerson.location}</p>
                 </div>
               )}
               <div className='flex gap-2'>
                 <LinkIcon size='16' variant='Bold' color='#8E8E93' className='shrink-0' />
                 <div className='flex flex-col gap-1 w-full overflow-hidden'>
-                  {meetPerson.website !== '' && (
+                  {profilePerson.website !== '' && (
                     <Link
-                      href={fixHref(meetPerson.website)}
+                      href={profilePerson.website}
                       target='_blank'
                       className='text-xs font-inter hover:text-primary/80 transition truncate'
                     >
-                      {meetPerson.website}
+                      {profilePerson.website}
                     </Link>
                   )}
-                  {meetPerson.instagramLink !== '' && (
+                  {profilePerson.instagramLink !== '' && (
                     <Link
-                      href={fixHref(meetPerson.instagramLink)}
+                      href={profilePerson.instagramLink}
                       target='_blank'
                       className='text-xs font-inter hover:text-primary/80 transition truncate'
                     >
-                      {meetPerson.instagramLink}
+                      {profilePerson.instagramLink}
                     </Link>
                   )}
-                  {meetPerson.linkedinLink !== '' && (
+                  {profilePerson.linkedinLink !== '' && (
                     <Link
-                      href={fixHref(meetPerson.linkedinLink)}
+                      href={profilePerson.linkedinLink}
                       target='_blank'
                       className='text-xs font-inter hover:text-primary/80 transition truncate'
                     >
-                      {meetPerson.linkedinLink}
+                      {profilePerson.linkedinLink}
                     </Link>
                   )}
-                  {meetPerson.earthoneLink !== '' && (
+                  {profilePerson.earthoneLink !== '' && (
                     <Link
-                      href={fixHref(meetPerson.earthoneLink)}
+                      href={profilePerson.earthoneLink}
                       target='_blank'
                       className='text-xs font-inter hover:text-primary/80 transition truncate'
                     >
-                      {meetPerson.earthoneLink}
+                      {profilePerson.earthoneLink}
                     </Link>
                   )}
                 </div>
               </div>
             </div>
             <div className='bg-[#F6F7FE] rounded-lg p-4 flex flex-col gap-4'>
-              {meetPerson.bio && (
+              {profilePerson.bio && (
                 <>
                   <div>
                     <h2 className='text-base font-semibold'>Bio</h2>
-                    <p className='text-xs font-inter'>{meetPerson.bio}</p>
+                    <p className='text-xs font-inter'>{profilePerson.bio}</p>
                   </div>
                   <Separator className='last:hidden' />
                 </>
               )}
-              {meetPerson.offer && (
+              {profilePerson.offer && (
                 <>
                   <div>
                     <h2 className='text-base font-semibold'>Offer</h2>
-                    <p className='text-xs font-inter'>{meetPerson.offer}</p>
+                    <p className='text-xs font-inter'>{profilePerson.offer}</p>
                   </div>
                   <Separator className='last:hidden' />
                 </>
               )}
-              {meetPerson.need && (
+              {profilePerson.need && (
                 <>
                   <div>
                     <h2 className='text-base font-semibold'>Need</h2>
-                    <p className='text-xs font-inter'>{meetPerson.need}</p>
+                    <p className='text-xs font-inter'>{profilePerson.need}</p>
                   </div>
                   <Separator className='last:hidden' />
                 </>
               )}
-              {meetPerson.action && (
+              {profilePerson.action && (
                 <>
                   <div>
                     <h2 className='text-base font-semibold'>Action</h2>
-                    <p className='text-xs font-inter'>{meetPerson.action}</p>
+                    <p className='text-xs font-inter'>{profilePerson.action}</p>
                   </div>
                   <Separator className='last:hidden' />
                 </>
               )}
-              {meetPerson.guild && (
+              {profilePerson.guild && (
                 <>
                   <div>
                     <h2 className='text-base font-semibold'>Guild</h2>
-                    <p className='text-xs font-inter'>{meetPerson.guild}</p>
+                    <p className='text-xs font-inter'>{profilePerson.guild}</p>
                   </div>
                   <Separator className='last:hidden' />
                 </>
@@ -173,10 +174,10 @@ async function MeetPage({ params }: { params: Promise<{ personId: string }> }) {
       </div>
       <div className='flex items-center gap-7 pb-4 pt-6'>
         <NextButton personId={currentPerson.id} />
-        <MeetButton personId={currentPerson.id} meetPersonId={meetPerson.id} />
+        <MeetButton personId={currentPerson.id} meetPersonId={profilePerson.id} />
       </div>
     </div>
   );
 }
 
-export default MeetPage;
+export default ProfilePage;
